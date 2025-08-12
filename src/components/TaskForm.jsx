@@ -12,6 +12,13 @@ const TaskForm = () => {
     tags: [], //when we select a tag, it will be added in here. and if a tag is already in this array, it will remove that tag
   });
 
+  //check to see if the tag is available in the tags array or not
+  const checkTag = (tag) => {
+    //return true or false for that tag.
+    //get each item, check if the item is equal to the tag
+    return taskData.tags.some((item) => item === tag);
+  };
+
   //selectTag function will run when a tag is selected
   const selectTag = (tag) => {
     //store the tags into the tags array
@@ -59,10 +66,26 @@ const TaskForm = () => {
         />
         <div className="task_form_bottom_line">
           <div>
-            <Tag tagName="HTML" selectTag={selectTag} />
-            <Tag tagName="CSS" selectTag={selectTag} />
-            <Tag tagName="JavaScript" selectTag={selectTag} />
-            <Tag tagName="React" selectTag={selectTag} />
+            <Tag
+              tagName="HTML"
+              selectTag={selectTag}
+              selected={checkTag("HTML")}
+            />
+            <Tag
+              tagName="CSS"
+              selectTag={selectTag}
+              selected={checkTag("CSS")}
+            />
+            <Tag
+              tagName="JavaScript"
+              selectTag={selectTag}
+              selected={checkTag("JavaScript")}
+            />
+            <Tag
+              tagName="React"
+              selectTag={selectTag}
+              selected={checkTag("React")}
+            />
           </div>
 
           <div>
