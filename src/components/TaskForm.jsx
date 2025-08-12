@@ -53,7 +53,7 @@ const TaskForm = ({ setTasks }) => {
     setTasks((prev) => {
       return [...prev, taskData];
     });
-    setTaskData({ task: "", status: "todo", tags: [] });
+    setTaskData({ task: "", status: "todo", tags: [] }); //resets the tags
   };
 
   return (
