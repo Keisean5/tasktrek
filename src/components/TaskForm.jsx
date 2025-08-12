@@ -53,6 +53,7 @@ const TaskForm = ({ setTasks }) => {
     setTasks((prev) => {
       return [...prev, taskData];
     });
+    setTaskData({ task: "", status: "todo", tags: [] });
   };
 
   return (
@@ -62,6 +63,7 @@ const TaskForm = ({ setTasks }) => {
           //pass the name properties to match the object properties
           type="text" // exactly the same in taskData Oject
           name="task" // exactly the same in taskData Oject
+          value={taskData.task} //reset the input field after creating a task
           className="task_input"
           placeholder="Enter your task"
           onChange={handleChange}
@@ -93,6 +95,7 @@ const TaskForm = ({ setTasks }) => {
           <div>
             <select
               name="status"
+              value={taskData.status} //reset the drop down after creating a task
               className="task_status"
               onChange={handleChange}
             >
