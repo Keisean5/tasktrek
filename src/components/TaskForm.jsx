@@ -9,7 +9,27 @@ const TaskForm = () => {
     //Property Names and their Values
     task: "",
     status: "todo",
+    tags: [], //when we select a tag, it will be added in here. and if a tag is already in this array, it will remove that tag
   });
+
+  //selectTag function will run when a tag is selected
+  const selectTag = (tag) => {
+    //store the tags into the tags array
+    //the some method will return true or false.
+    //check the taskData tags to see if it exists in the array
+    if (taskData.tags.some((item) => item === tag)) {
+      //remove the tag from the array if it is available
+      const filterTags = taskData.tags.filter((item) => item !== tag);
+      setTaskData((prev) => {
+        return { ...prev, tags: filterTags };
+      });
+    } else {
+      setTaskData((prev) => {
+        return { ...prev, tags: [...prev.tags, tag] };
+      });
+    }
+  };
+  console.log(taskData.tags);
 
   //one single function for all form Fields on change event
   const handleChange = (e) => {
@@ -39,10 +59,10 @@ const TaskForm = () => {
         />
         <div className="task_form_bottom_line">
           <div>
-            <Tag tagName="HTML" />
-            <Tag tagName="CSS" />
-            <Tag tagName="JavaScript" />
-            <Tag tagName="React" />
+            <Tag tagName="HTML" selectTag={selectTag} />
+            <Tag tagName="CSS" selectTag={selectTag} />
+            <Tag tagName="JavaScript" selectTag={selectTag} />
+            <Tag tagName="React" selectTag={selectTag} />
           </div>
 
           <div>
